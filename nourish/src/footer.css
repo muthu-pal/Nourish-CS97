@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #273958;
+    color: white;
+    text-align: right;
+    z-index: 10;
+    
+    
+
+}
+
+.right-footer{
+   font-weight: 400;
+   margin-right: 10px;
+   font-size: 1em;
+   margin-top: 2.5px;
+   margin-bottom: 2.5px;
+   
+}
