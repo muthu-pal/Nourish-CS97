@@ -4,9 +4,11 @@ import './header.css'
 function Header() {
     return (
       <div className="container">
-        <h1 className="title">Nourish</h1>
+        <h1 className="title">nourish</h1>
+        <div className="buttons">
+        <button className="search">SEARCH</button>
         <button className="upload">UPLOAD</button>
-        <button classname="search">SEARCH</button>
+        </div>
       </div>
     )
   }

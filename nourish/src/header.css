@@ -4,24 +4,51 @@
 }
 
 .container{
-    height: 130px;
-    background: skyblue;
-    display: flex;
+    height: 100px;
+    background: white;
+    display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-columns: 30% 40% 30%;
+    border-bottom: 2px solid black;
+}
+
+.title{
+    grid-column-start: 1;
+    color: #6BB096;
+    font-weight: 900px;
+    font-size: 3em;
+    letter-spacing: 0.04em;
 }
 
 .upload{
     background: #273958;
     width: 100px;
-    height: 43px;
+    height: 35px;
     border-radius: 40px;
     font-style: normal;
     font-weight: 700px;
     font-size: 1em;
     line-height: 28px;
     letter-spacing: 0.04em;
-
     color: #FFFFFF;
+    margin: 15px;
 
+}
+
+.search{
+    background: white;
+    width: 100px;
+    height: 35px;
+    border-radius: 40px;
+    font-style: normal;
+    font-weight: 700px;
+    font-size: 1em;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    color: #273958;;
+}
+
+.buttons{
+    grid-column-start: 3;
 }
