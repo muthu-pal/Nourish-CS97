@@ -9,11 +9,11 @@ function Post() {
         </div>
         <div className="post-content">
           <h1 className="title-post">posts</h1>
-          <p className="paragraphs">hdokenckldencfklnekcfnweknndckne</p>
+          <p className="paragraphs">hdokenckldencfklnekcfnweknncdiosjcojdej ccdkomncodsokcokdfmokvmdfomdckne</p>
           <h5 className="tags">############</h5>
           <h5 className="likes">45 likes</h5>
           <h5 className="comment-title">COMMENTS</h5>
-          <h5 className="comments">i like this</h5>
+          <p className="comments">i like this</p>
         </div>
       </div>
     )

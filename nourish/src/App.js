@@ -10,6 +10,10 @@ function App() {
         <Header />
         <div className="feed">
         <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
         </div>
         <Footer />
     </div>
