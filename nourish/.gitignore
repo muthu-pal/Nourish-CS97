@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#you might have to do npm install apollo-server graphql mongoose on your local machine
+#also, npm install bcryptjs jsonwebtoken
+#because node_modules not uploaded to github 
+node_modules 
+#config js contains private database password, so it's included in .gitignore
+config.js
