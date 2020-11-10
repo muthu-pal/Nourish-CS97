@@ -1,37 +1,82 @@
 
+import React from "react";
 import './App.css';
-import Header from './header'
-import Footer from './footer'
-import Post from './post'
+import {
+      BrowserRouter as Router,
+      Switch,
+      Route,
+      Link
+    } from "react-router-dom";
+import Home from './Home';
+import Upload from './Upload';
+import Search from './Search';
 
 function App() {
   return (
     <div className="App">
-        <Header />
-        <div className="feed">
-        <Post image={"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}
-              title={"selling some cool produce from my garden at home i have lots of food"}
-              paragraph={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."}
-              tags={"produce, food, grocery"}
-              likes={49}
-              comments={"wow can i have some"} />
-        <Post image={"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}
-              title={"selling some produce"}
-              paragraph={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."}
-              tags={"produce, food, grocery"}
-              likes={49}
-              comments={"wow can i have some"} />
-        <Post image={"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}
-              title={"selling some produce"}
-              paragraph={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."}
-              tags={"produce, food, grocery"}
-              likes={49}
-              comments={"wow can i have some"} />
-        
-        </div>
-        <Footer />
+        <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/search">search</Link>
+          </li>
+          <li>
+            <Link to="/upload">upload</Link>
+          </li>
+        </ul>
+
+        <hr />
+
+        {/*
+          A <Switch> looks through all its children <Route>
+          elements and renders the first one whose path
+          matches the current URL. Use a <Switch> any time
+          you have multiple routes, but you want only one
+          of them to render at a time
+        */}
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/upload">
+            <Upload />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
     </div>
   );
 }
+
+// function Home() {
+//       return (
+//         <div>
+//           <h2>Home</h2>
+//         </div>
+//       );
+//     }
+    
+//     function Search() {
+//       return (
+//         <div>
+//           <h2>Search</h2>
+//         </div>
+//       );
+//     }
+    
+//     function Upload() {
+//       return (
+//         <div>
+//           <h2>Upload</h2>
+//         </div>
+//       );
+//     }
+
 
 export default App;
