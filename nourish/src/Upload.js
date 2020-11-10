@@ -22,6 +22,7 @@ export default class Upload extends React.Component {
           tags : ${tags} 
           image : ${image} 
         `) 
+        this.setState({title:'',caption:'', tags:'', image:''})
       } 
       
        
@@ -48,15 +49,6 @@ export default class Upload extends React.Component {
                 onChange={this.handleChange} 
               /> 
             </div> 
-            {/* <div className="input-div"> 
-              <label htmlFor='caption'>Caption:  </label> 
-              <input className="input" id="caption-input"
-                name='caption' 
-                placeholder='caption'
-                value={this.state.caption} 
-                onChange={this.handleChange} 
-              /> 
-            </div>  */}
             <div className="input-div"> 
               <label htmlFor='caption'>Caption:  </label> 
               <textarea className="input" id="caption-input"
