@@ -1,5 +1,8 @@
 
 import React from "react";
+import { useQuery } from '@apollo/react-hooks'; 
+import gql from 'graphql-tag'; 
+
 import './App.css';
 import {
       BrowserRouter as Router,
@@ -11,13 +14,16 @@ import Upload from './Upload';
 import Search from './Search';
 
 function App() {
+  const { loading, data } = useQuery(FETCH_POSTS_QUERY); 
+
+
   return (
     <div className="App">
         <Router>
       <div>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home dataFromDB={data} />
           </Route>
           <Route path="/search">
             <Search />
@@ -31,5 +37,20 @@ function App() {
     </div>
   );
 }
+
+const FETCH_POSTS_QUERY = gql`
+query {
+  getPosts{
+    id body createdAt username 
+    likes{
+      username
+    }
+    
+    comments{
+      id username createdAt body
+    }
+  }
+}
+`;
 
 export default App;
