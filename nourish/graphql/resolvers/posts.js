@@ -13,6 +13,7 @@ module.exports = {
         throw new Error(err);
       }
     },
+
     async getPost(_, { postId }) {
       try {
         const post = await Post.findById(postId);
@@ -26,6 +27,7 @@ module.exports = {
       }
     },
   },
+
   Mutation: {
     async createPost(_, { body }, context) {
       const user = checkAuth(context);
@@ -38,18 +40,17 @@ module.exports = {
       const post = await newPost.save();
       return post;
     },
+
     async deletePost(_, { postId }, context) {
       const user = checkAuth(context);
       try {
         const post = await Post.findById(postId);
-
         if (!post) {
           throw new Error("Post not found");
         }
-
         if (user.username === post.username) {
           await Post.findByIdAndDelete(postId);
-          return "Post Deleted";
+          return post;
         } else {
           throw new AuthenticationError("Action not allowed");
         }
