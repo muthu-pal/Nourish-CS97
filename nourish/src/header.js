@@ -4,10 +4,16 @@ import './header.css'
 function Header() {
     return (
       <div className="container">
-        <h1 className="title">nourish</h1>
+        <a href="/">
+          <h1 className="title">nourish</h1>
+        </a>
         <div className="buttons">
-        <button className="search">SEARCH</button>
-        <button className="upload">UPLOAD</button>
+        <a href="/search">
+          <button className="search" onClick>SEARCH</button>
+        </a>
+        <a href="/upload">
+          <button className="upload" onClick>UPLOAD</button>
+        </a>
         </div>
       </div>
     )
