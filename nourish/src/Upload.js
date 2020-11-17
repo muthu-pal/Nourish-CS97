@@ -95,9 +95,9 @@ function Upload() {
 
   const {values, onChange, onSubmit} = useForm(createPostCallback, { 
     body: '', 
-    // caption: '', 
-    // tags: '', 
-    // image: '' 
+    title: '',
+    caption: '', 
+    tags: '', 
   });
 
   const[createPost, {error}]= useMutation(CREATE_POST_MUTATION, {
@@ -105,6 +105,9 @@ function Upload() {
     update(_, result){
       console.log(result)
       values.body = ''
+      values.title = ''
+      values.caption = ''
+      values.tags = ''
     }
 
 
@@ -121,19 +124,19 @@ function Upload() {
           <div className="input-div">
             <label htmlFor='title'>Title:  </label>
             <input className="input"
-              name='body'
+              name='title'
               placeholder='title'
-              value={values.body}
+              value={values.title}
               onChange={onChange}
             />
           </div>
-          {/* <div className="input-div">
+          <div className="input-div">
             <label htmlFor='caption'>Caption:  </label>
             <textarea className="input" id="caption-input"
               name='caption'
               placeholder='caption'
-              value={this.state.caption}
-              onChange={this.handleChange}
+              value={values.caption}
+              onChange={onChange}
             />
           </div>
           <div className="input-div">
@@ -141,19 +144,19 @@ function Upload() {
             <input className="input"
               name='tags'
               placeholder='tags'
-              value={this.state.tags}
-              onChange={this.handleChange}
+              value={values.tags}
+              onChange={onChange}
             />
           </div>
           <div className="input-div">
             <label htmlFor='image'>Image:  </label>
             <input className="input"
-              name='image'
-              placeholder='image'
-              value={this.state.image}
-              onChange={this.handleChange}
+              name='body'
+              placeholder='image/body'
+              value={values.body}
+              onChange={onChange}
             />
-          </div> */}
+          </div>
           <div className="submit-div">
             <button className="upload-button">Submit</button>
           </div>
@@ -166,10 +169,10 @@ function Upload() {
 //, $caption: String!, $tags: String!, $image: String!
 
 const CREATE_POST_MUTATION = gql`
-mutation createPost($body: String!)
+mutation createPost($body: String!, $title: String!, $caption: String!, $tags: String!)
 {
-  createPost(body: $body){
-    id body createdAt
+  createPost(body: $body, title: $title, caption: $caption, tags: $tags){
+    id body title caption tags createdAt
   }
 }
 `

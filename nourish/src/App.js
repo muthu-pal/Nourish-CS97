@@ -14,7 +14,8 @@ import Upload from './Upload';
 import Search from './Search';
 
 function App() {
-  const { loading, data } = useQuery(FETCH_POSTS_QUERY); 
+  const { loading, data } = useQuery(FETCH_POSTS_QUERY);
+  console.log(data); 
 
 
   return (
@@ -39,15 +40,20 @@ function App() {
 }
 
 const FETCH_POSTS_QUERY = gql`
-query {
+{
   getPosts{
-    id body createdAt username 
+    id 
+    body
+    title
     likes{
       username
     }
     
     comments{
-      id username createdAt body
+      id 
+      username 
+      createdAt 
+      body
     }
   }
 }
