@@ -94,7 +94,7 @@ function Upload() {
 
 
   const {values, onChange, onSubmit} = useForm(createPostCallback, { 
-    title: '', 
+    body: '', 
     // caption: '', 
     // tags: '', 
     // image: '' 
@@ -104,7 +104,7 @@ function Upload() {
     variables: values,
     update(_, result){
       console.log(result)
-      values.title = ''
+      values.body = ''
     }
 
 
@@ -121,7 +121,7 @@ function Upload() {
           <div className="input-div">
             <label htmlFor='title'>Title:  </label>
             <input className="input"
-              name='title'
+              name='body'
               placeholder='title'
               value={values.body}
               onChange={onChange}
@@ -166,10 +166,10 @@ function Upload() {
 //, $caption: String!, $tags: String!, $image: String!
 
 const CREATE_POST_MUTATION = gql`
-mutation createPost($title: String!)
+mutation createPost($body: String!)
 {
-  createPost(title: $title){
-    id title createdAt
+  createPost(body: $body){
+    id body createdAt
   }
 }
 `
