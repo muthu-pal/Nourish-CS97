@@ -45,6 +45,8 @@ const FETCH_POSTS_QUERY = gql`
     id 
     body
     title
+    caption
+    tags
     likes{
       username
     }
