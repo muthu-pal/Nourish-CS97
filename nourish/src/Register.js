@@ -1,12 +1,14 @@
 import './Upload.css';
 import Header from './header';
 import Footer from './footer';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
 import { useForm } from './util/hooks';
+import { AuthContext } from './context/auth';
 
 function Register(props) {
+    const context = useContext(AuthContext)
     const [errors, setErrors] = useState({})
 
     const { onChange, onSubmit, values } = useForm(registerUser, {
@@ -15,8 +17,9 @@ function Register(props) {
     })
     
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
-      update(_, result){
+      update(_, { data: { register: userData}}){
         window.alert("You've been registered. Go to the login page.")
+        context.login(userData)
       },
       onError(err){
         setErrors(err.graphQLErrors[0].extensions.exception.errors);
