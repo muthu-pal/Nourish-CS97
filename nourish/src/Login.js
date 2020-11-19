@@ -1,12 +1,14 @@
 import './Upload.css';
 import Header from './header';
 import Footer from './footer';
-import React, {useState} from 'react';
+import React, { useContext, useState } from 'react';
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
 import { useForm } from './util/hooks';
+import { AuthContext } from './context/auth';
 
 function Login(props) {
+    const context = useContext(AuthContext)
     const [errors, setErrors] = useState({})
 
     const { onChange, onSubmit, values } = useForm(loginUserCallback, {
@@ -15,8 +17,9 @@ function Login(props) {
     })
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-      update(_, result){
+      update(_, { data: { login: userData}}){
         window.alert("You've been logged in. Go to the home page.")
+        context.login(userData)
       },
       onError(err){
         setErrors(err.graphQLErrors[0].extensions.exception.errors);

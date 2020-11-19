@@ -9,6 +9,8 @@ import {
       Switch,
       Route
     } from "react-router-dom";
+
+import { AuthProvider } from './context/auth';
 import Home from './Home';
 import Upload from './Upload';
 import Search from './Search';
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
         <Router>
       <div>
         <Switch>
@@ -43,6 +46,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </AuthProvider>
     </div>
   );
 }
