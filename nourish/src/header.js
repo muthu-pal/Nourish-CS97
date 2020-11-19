@@ -14,6 +14,9 @@ function Header() {
         <a href="/upload">
           <button className="upload" onClick>UPLOAD</button>
         </a>
+        <a href="/register">
+          <button className="search" onClick>REGISTER</button>
+        </a>
         </div>
       </div>
     )
