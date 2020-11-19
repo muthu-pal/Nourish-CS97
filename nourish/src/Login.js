@@ -6,17 +6,17 @@ import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
 import { useForm } from './util/hooks';
 
-function Register(props) {
+function Login(props) {
     const [errors, setErrors] = useState({})
 
-    const { onChange, onSubmit, values } = useForm(registerUser, {
+    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
         username: '', 
         password: ''
     })
-    
-    const [addUser, { loading }] = useMutation(REGISTER_USER, {
+
+    const [loginUser, { loading }] = useMutation(LOGIN_USER, {
       update(_, result){
-        window.alert("You've been registered. Go to the login page.")
+        window.alert("You've been logged in. Go to the home page.")
       },
       onError(err){
         setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -24,10 +24,9 @@ function Register(props) {
       variables: values
     });
 
-    function registerUser(){
-        addUser();
+    function loginUserCallback(){
+        loginUser();
     }
-
 
       return (
         <div>
@@ -71,12 +70,12 @@ function Register(props) {
       )
 }
 
-const REGISTER_USER = gql`
-  mutation register($username: String! $password: String!) {
-    register(registerInput: {username: $username password: $password}) 
+const LOGIN_USER = gql`
+  mutation login($username: String! $password: String!) {
+    login(username: $username password: $password) 
     {
       id username createdAt token
     }
   }
 `
-export default Register;
+export default Login;
