@@ -32,7 +32,7 @@ module.exports = {
     async createPost(_, { body, title, caption, tags }, context) {
       const user = checkAuth(context);
 
-      if (body.trim() === '' && title.trim() === '' && caption.trim() === '' && tags.trim() === ''){
+      if (body.trim() === '' && title.trim() === '' && caption.trim() === '' && tags.length === 0){
         throw new Error('Post body must not be empty'); 
       }
 
