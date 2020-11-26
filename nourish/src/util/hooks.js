@@ -13,6 +13,7 @@ export const useForm = (callback, initialState = {}) => {
         tagsString: event.target.value,
         tags: resNoDupes
       });
+   
     }
     else{
     setValues({ ...values, 
@@ -23,7 +24,7 @@ export const useForm = (callback, initialState = {}) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    onChange(event.target.tags);
+   // onChange(event.target.tags);
     callback();
   };
   const onSubmitForm = (event) => {

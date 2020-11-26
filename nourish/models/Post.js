@@ -1,7 +1,6 @@
 const { model, Schema} = require('mongoose');
 
 const postSchema = new Schema({
-    body: String,
     title: String,
     caption: String,
     tags: [String],
@@ -23,7 +22,8 @@ const postSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
-    }
+    },
+    imageName: String,
 });
 
 module.exports = model('Post', postSchema); 

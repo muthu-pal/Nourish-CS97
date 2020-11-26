@@ -11,7 +11,7 @@ function Home(props) {
   if(props.dataFromDB!=null){
         console.log("not null")
             postsToReturn = props.dataFromDB.getPosts.map((post)=>(
-                  <Post image={"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}
+                  <Post image={post.imageName}
                   title={post.title}
                   paragraph={post.caption}
                   tags={post.tags}

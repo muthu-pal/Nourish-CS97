@@ -55,7 +55,6 @@ const FETCH_POSTS_QUERY = gql`
 {
   getPosts{
     id 
-    body
     title
     caption
     tags
@@ -68,9 +67,11 @@ const FETCH_POSTS_QUERY = gql`
       username 
       createdAt 
       body
-    }
+    } 
+    imageName
+
   }
-}
-`;
+} 
+`;  
 
 export default App;
