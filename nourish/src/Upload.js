@@ -1,7 +1,7 @@
 import './Upload.css';
 import Header from './header';
 import Footer from './footer';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
 import { useForm } from './util/hooks'; 

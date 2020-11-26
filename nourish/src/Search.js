@@ -1,12 +1,24 @@
-
+import React, {useState} from 'react';
 import './App.css';
 import Header from './header'
 import Footer from './footer'
 import Post from './post'
+import './Upload.css'; 
 
 function Search(props) {
   let postsToReturn = <div></div>;
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searched, setSearched] = useState(false);
+
   let test_tags = "one"; 
+
+  function onChange(event){
+    setSearchQuery(event.target.value);
+    if (event.target.value !== ""){
+      setSearched(true);
+    }
+  }
 
   if(props.dataFromDB!=null){
         console.log("not null")
@@ -25,9 +37,23 @@ function Search(props) {
   return (
     <div className="App">
         <Header />
-        <div className="feed">
-            {postsToReturn}
+        
+        <div className="input-div">
+            <label htmlFor='title'>Enter Search:  </label>
+            <input className="input"
+              name='searchQuery'
+              placeholder='search something here...'
+              value={searchQuery}
+              onChange={onChange}
+            />
         </div>
+        {(searched) 
+        ?(<div className="feed">
+            {postsToReturn}
+        </div>)
+        :(<div>
+          <h3>Nothing to see here.</h3>
+        </div>)}
         <Footer />
     </div>
   );
