@@ -3,7 +3,7 @@ import './post.css'
 
 function Post(props) {
   //  const src = /;
-  if(props.image!=''){
+  if(props.image!==''){
     return (
       <div className="container-post">
         <div className="post-image">

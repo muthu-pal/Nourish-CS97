@@ -8,21 +8,25 @@ import './Upload.css';
 function Search(props) {
   let postsToReturn = <div></div>;
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState([]);
   const [searched, setSearched] = useState(false);
 
-  let test_tags = "one"; 
+  
 
   function onChange(event){
-    setSearchQuery(event.target.value);
+    let a = event.target.value;
+    let res = a.split(" ").join("").split(',');
+    let resNoDupes = [...new Set(res)];
+    setSearchQuery(resNoDupes);
     if (event.target.value !== ""){
       setSearched(true);
     }
   }
 
+
   if(props.dataFromDB!=null){
         console.log("not null")
-            postsToReturn = props.dataFromDB.getPosts.filter((post)=>(post.tags.includes(searchQuery))).map((post)=>(
+            postsToReturn = props.dataFromDB.getPosts.filter((post)=>(post.tags.some(i => searchQuery.includes(i)))).map((post)=>(
 
                   <Post image={post.imageName}
                   title={post.title}
@@ -42,7 +46,7 @@ function Search(props) {
             <label htmlFor='title'>Enter Search:  </label>
             <input className="input"
               name='searchQuery'
-              placeholder='search something here...'
+              placeholder='Separate your tags by commas'
               value={searchQuery}
               onChange={onChange}
             />
