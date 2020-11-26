@@ -32,7 +32,7 @@ function App() {
             <Home dataFromDB={data} />
           </Route>
           <Route path="/search">
-            <Search />
+            <Search dataFromDB={data} />
           </Route>
           <Route path="/upload">
             <Upload />
