@@ -22,7 +22,7 @@ function Search(props) {
 
   if(props.dataFromDB!=null){
         console.log("not null")
-            postsToReturn = props.dataFromDB.getPosts.filter((post)=>(post.tags.includes(test_tags))).map((post)=>(
+            postsToReturn = props.dataFromDB.getPosts.filter((post)=>(post.tags.includes(searchQuery))).map((post)=>(
 
                   <Post image={post.imageName}
                   title={post.title}
@@ -47,13 +47,24 @@ function Search(props) {
               onChange={onChange}
             />
         </div>
-        {(searched) 
-        ?(<div className="feed">
-            {postsToReturn}
-        </div>)
-        :(<div>
-          <h3>Nothing to see here.</h3>
-        </div>)}
+        {(searched)
+          ?(
+            (postsToReturn.length !== 0) 
+            ?(<div className="feed">
+                {postsToReturn}
+              </div>
+             )
+              
+            :(<div>
+              <h3>Nothing to see here.</h3>
+            </div>)
+             )
+          
+          :(<div>
+            <h3>Enter your search.</h3>
+          </div>
+          )
+        }
         <Footer />
     </div>
   );
