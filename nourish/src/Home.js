@@ -16,7 +16,7 @@ function Home(props) {
                   paragraph={post.caption}
                   tags={post.tags}
                   likes={post.likes}
-                  comments={post.comments.length > 0 ? post.comments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)) : ""}
+                  comments={post.comments}
                   key={post.id}
                   id={post.id}
                   />

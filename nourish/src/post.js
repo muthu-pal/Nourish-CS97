@@ -9,13 +9,20 @@ function Post(props) {
   const { user } = useContext(AuthContext);
 
   const [liked, setLiked] = useState(false);
-  
+  const [currentComments, setCurrentComments] = useState(props.comments); 
+  const [addedComment, setAddedComment ] = useState(0); 
+//end of upload comment stuff
 
   useEffect(() => {
     if (user && props.likes.find((like) => like.username === user.username)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, props.likes]);
+
+  useEffect(() => {
+    setCurrentComments(props.comments); 
+    console.log('hello');
+  }, [user, currentComments]);
 
   const [likePost] = useMutation(LIKE_POST,{
     variables: { postId: props.id }
@@ -41,13 +48,19 @@ function Post(props) {
       </div>
   );
   
+  //upload comment stuff
+  const [uploadComment] = useMutation(UPLOAD_COMMENT,{
+  
+  })
   function submitComment(){
-    console.log(document.getElementById(`${props.id}`).value);
+    const body_val = document.getElementById(`${props.id}`).value;
+    const id_val = props.id; 
+    //if(!commentValue) alert('Cannot submit empty comments'); 
+    uploadComment({ variables: { postId: id_val, body: body_val}})
     document.getElementById(`${props.id}`).value = "";
-
   }
   
-
+//props.comments.length > 0 ? post.comments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)
   const commentInput = 
   user ? (
       <div>
@@ -60,12 +73,12 @@ function Post(props) {
           />
         </div>
         <button className="commentButton" onClick={submitComment}>Submit</button>
-        {props.comments}
+        {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)) : ""}
       </div>
   ) : (
     <div>
       <h5 className="comment-title">COMMENTS</h5>
-      {props.comments}
+      {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)) : ""}
     </div>
   );
 
@@ -115,6 +128,14 @@ function Post(props) {
       likes{
         id username
       }
+    }
+  }
+`
+
+const UPLOAD_COMMENT = gql`
+  mutation createComment($postId: ID!, $body: String!){
+    createComment(postId: $postId, body: $body){
+      id
     }
   }
 `
