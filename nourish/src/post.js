@@ -13,8 +13,11 @@ function Post(props) {
         <div className="post-content">
           <h1 className="title-post">{props.title}</h1>
           <p className="paragraphs">{props.paragraph}</p>
-          <h5 className="tags">Tags: {props.tags.toString()}</h5> 
-          <h5 className="likes">{props.likes} likes</h5>
+          <h5 className="tags">Tags: {props.tags.toString()}</h5>
+          <div className="likeBox">
+            <button className="likeButton">Like</button> 
+            <h5 className="likes">{props.likes} likes</h5>
+          </div>
           <h5 className="comment-title">COMMENTS</h5>
           <p className="comments">{props.comments}</p>
         </div>
@@ -31,8 +34,11 @@ function Post(props) {
         <div className="post-content">
           <h1 className="title-post">{props.title}</h1>
           <p className="paragraphs">{props.paragraph}</p>
-          <h5 className="tags">Tags: {props.tags.toString()}</h5> 
-          <h5 className="likes">{props.likes} likes</h5>
+          <h5 className="tags">Tags: {props.tags.toString()}</h5>
+          <div className="likeBox">
+            <button className="likeButton">Like</button>
+            <h5 className="likes">{props.likes} likes</h5>
+          </div>
           <h5 className="comment-title">COMMENTS</h5>
           <p className="comments">{props.comments}</p>
         </div>

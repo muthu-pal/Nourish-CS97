@@ -45,11 +45,24 @@ p{
     margin-bottom: 15px;
 }
 
+.likeBox{
+    display: grid;
+    grid-template-columns: 15% 30% auto;
+    column-gap: 10px;
+    margin-bottom: 15px;
+}
+
 .likes{
     font-size: 1.1em;
     font-weight: 700px;
     color: #F44336;
-    margin-bottom: 15px;
+    margin-top:5px;
+    margin-bottom: 5px;
+
+    grid-column-start: 2;
+
+    /* margin-right : 20px; 
+    float:left; */
 }
 
 .comment-title{
@@ -70,3 +83,16 @@ img{
     height: 375px;
     border-radius: 20px;
 }
+
+.likeButton{
+    grid-column-start: 1;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #F44336;
+    color:black;
+    background-color: white;
+    font-family: "Roboto";
+    
+}
+
+
