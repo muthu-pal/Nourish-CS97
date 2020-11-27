@@ -69,6 +69,7 @@ p{
     font-size: 1.1em;
     font-weight: 700px;
     margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 .comments{
@@ -93,6 +94,16 @@ img{
     background-color: white;
     font-family: "Roboto";
     
+}
+
+.likeBox-notLoggedIn{
+    display: flex;
+    flex-direction: column;
+}
+
+.paragraphLikeBox {
+    margin-bottom: 5px ;
+ 
 }
 
 

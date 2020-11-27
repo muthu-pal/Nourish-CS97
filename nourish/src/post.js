@@ -34,7 +34,10 @@ function Post(props) {
       </div>
     )
   ) : (
-    window.alert("You need to be logged in to like a post.")
+    <div className="likeBox-notLoggedIn">
+        <p className="paragraphLikeBox">Log in to like posts.</p> 
+        <h5 className="likes">{props.likes.length} likes</h5>
+      </div>
   );
 
 
