@@ -26,8 +26,6 @@ function Upload() {
       values.tagsString = ''
       values.imageName = ''
     }
-
-
   })
 
 
