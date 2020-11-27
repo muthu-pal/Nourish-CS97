@@ -9,6 +9,7 @@ function Post(props) {
   const { user } = useContext(AuthContext);
 
   const [liked, setLiked] = useState(false);
+  
 
   useEffect(() => {
     if (user && props.likes.find((like) => like.username === user.username)) {
@@ -39,6 +40,34 @@ function Post(props) {
         <h5 className="likes">{props.likes.length} likes</h5>
       </div>
   );
+  
+  function submitComment(){
+    console.log(document.getElementById(`${props.id}`).value);
+    document.getElementById(`${props.id}`).value = "";
+
+  }
+  
+
+  const commentInput = 
+  user ? (
+      <div>
+        <h5 className="comment-title">COMMENTS</h5>
+        <div className="comment-div">
+          <input className="comment-input"
+            name='commentText'
+            placeholder='enter comment here...'
+            id={props.id}
+          />
+        </div>
+        <button className="commentButton" onClick={submitComment}>Submit</button>
+        {props.comments}
+      </div>
+  ) : (
+    <div>
+      <h5 className="comment-title">COMMENTS</h5>
+      {props.comments}
+    </div>
+  );
 
 
   if(props.image!==''){
@@ -53,8 +82,7 @@ function Post(props) {
           <p className="paragraphs">{props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
-          <h5 className="comment-title">COMMENTS</h5>
-          <p className="comments">{props.comments}</p>
+          {commentInput}
         </div>
       </div>
     )
@@ -71,6 +99,7 @@ function Post(props) {
           <p className="paragraphs">{props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
+          {commentInput}
           <h5 className="comment-title">COMMENTS</h5>
           <p className="comments">{props.comments}</p>
         </div>

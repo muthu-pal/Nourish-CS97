@@ -68,7 +68,7 @@ p{
 .comment-title{
     font-size: 1.1em;
     font-weight: 700px;
-    margin-bottom: 15px;
+    margin-bottom: 7px;
     margin-top: 10px;
 }
 
@@ -104,6 +104,35 @@ img{
 .paragraphLikeBox {
     margin-bottom: 5px ;
  
+}
+
+.comment-div{
+    margin:0;
+    padding:0;
+}
+
+.comment-input{
+    width: 95%;
+    font-size: 18px;
+    padding: 6px 6px;
+    margin: 8px 0;
+    
+}
+
+.commentButton{
+    border-radius: 7px;
+    border-style: solid;
+    border-color: black;
+    color:black;
+    background-color: white;
+    font-family: "Roboto";
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 12px;
+    
 }
 
 
