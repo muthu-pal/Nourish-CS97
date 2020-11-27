@@ -1,15 +1,43 @@
-import React from 'react';
+import React , { useContext, useEffect, useState } from 'react';
 import './post.css'
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
-
-
+import { AuthContext } from './context/auth'; 
 
 function Post(props) {
+
+  const { user } = useContext(AuthContext);
+
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    if (user && props.likes.find((like) => like.username === user.username)) {
+      setLiked(true);
+    } else setLiked(false);
+  }, [user, props.likes]);
+
   const [likePost] = useMutation(LIKE_POST,{
-    variables: { postId: id }
+    variables: { postId: props.id }
   })
-  //  const src = /;
+
+  const likeButton = 
+  user ? (
+    liked ? (
+      <div className="likeBox">
+        <button className="likeButton" onClick={likePost} style={{backgroundColor:"#F44336", color:"white"}}>Liked</button> 
+        <h5 className="likes">{props.likes.length} likes</h5>
+      </div>
+    ) : (
+      <div className="likeBox">
+        <button className="likeButton" onClick={likePost} style={{backgroundColor:"white", color:"#F44336"}}>Like</button> 
+        <h5 className="likes">{props.likes.length} likes</h5>
+      </div>
+    )
+  ) : (
+    window.alert("You need to be logged in to like a post.")
+  );
+
+
   if(props.image!==''){
     return (
       <div className="container-post">
@@ -21,10 +49,7 @@ function Post(props) {
           <h1 className="title-post">{props.title}</h1>
           <p className="paragraphs">{props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
-          <div className="likeBox">
-            <button className="likeButton" onClick={likePost()}>Like</button> 
-            <h5 className="likes">{props.likes} likes</h5>
-          </div>
+          {likeButton}
           <h5 className="comment-title">COMMENTS</h5>
           <p className="comments">{props.comments}</p>
         </div>
@@ -42,10 +67,7 @@ function Post(props) {
           <h1 className="title-post">{props.title}</h1>
           <p className="paragraphs">{props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
-          <div className="likeBox">
-            <button className="likeButton">Like</button>
-            <h5 className="likes">{props.likes} likes</h5>
-          </div>
+          {likeButton}
           <h5 className="comment-title">COMMENTS</h5>
           <p className="comments">{props.comments}</p>
         </div>
