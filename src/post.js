@@ -78,12 +78,12 @@ function Post(props) {
           />
         </div>
         <button className="commentButton" onClick={uploadComment}>Submit</button>
-        {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)) : ""}
+        {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}><b>{comment.username}: </b>{comment.body}</ul>)) : ""}
       </div>
   ) : (
     <div>
       <h5 className="comment-title">COMMENTS</h5>
-      {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)) : ""}
+      {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}><b>{comment.username}: </b>{comment.body}</ul>)) : ""}
     </div>
   );
 
