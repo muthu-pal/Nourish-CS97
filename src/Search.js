@@ -10,17 +10,34 @@ function Search(props) {
 
   const [searchQuery, setSearchQuery] = useState([]);
   const [searched, setSearched] = useState(false);
-
+  const [searchString, setSearchSearchString] = useState("");
   
 
   function onChange(event){
-    let a = event.target.value;
-    let res = a.split(" ").join("").split(',');
-    let resNoDupes = [...new Set(res)];
-    setSearchQuery(resNoDupes);
+    // let a = event.target.value;
+    // //let res = a.split(" ").join("").split(',');
+    // let res = a.split(',');
+    // console.log(res);
+    // let resNoDupes = [...new Set(res)];
+    // console.log(resNoDupes);
+    // let resNoSpace = resNoDupes.map((query) => (query.split(" ").join("")))
+    // console.log(resNoSpace);
+    // setSearchQuery(resNoSpace);
+    // if (event.target.value !== ""){
+    //   setSearched(true);
+    // }
+    setSearchSearchString(event.target.value);
     if (event.target.value !== ""){
       setSearched(true);
     }
+  }
+
+  function onSubmit(){
+    
+    let res = searchString.split(" ").join("").split(',');
+    let resNoDupes = [...new Set(res)];
+    console.log(resNoDupes);
+    setSearchQuery(resNoDupes);
   }
 
 
@@ -46,11 +63,12 @@ function Search(props) {
         <div className="input-div">
             <label htmlFor='title'>Enter Search:  </label>
             <input className="input"
-              name='searchQuery'
-              placeholder='Separate your tags by commas'
-              value={searchQuery}
+              name='searchString'
+              placeholder='Separate your tags by commas (ex. food, produce, fruit)'
+              value={searchString}
               onChange={onChange}
             />
+            <button className="searchButton" onClick={onSubmit}>submit</button>
         </div>
         {(searched)
           ?(
