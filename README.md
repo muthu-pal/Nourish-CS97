@@ -38,9 +38,9 @@ things to work on:
 - ~~adding a user to comments,~~
 - ~~upload image without having to type in image name~~
 - adding legit posts with real pics, comments
-- update header title to include location
-- example tags to search in the search bar placeholder
-- adding spaces into search bar
+- ~~update header title to include location~~
+- ~~example tags to search in the search bar placeholder~~
+- ~~adding spaces into search bar~~
 
 - Extra features:
     - organize posts by likes, or chronological
