@@ -89,10 +89,11 @@ function Post(props) {
 
 
   if(props.image!==''){
+ 
     return (
       <div className="container-post">
         <div className="post-image">
-          <img src={require('./images/'+props.image).default} alt=""/>
+          <img src={require('./images/'+props.image.substring(props.image.lastIndexOf("\\")+1)).default} alt=""/>
 
         </div>
         <div className="post-content">

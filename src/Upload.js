@@ -80,14 +80,10 @@ function Upload() {
             />
           </div>
           <div className="input-div">
-            <label htmlFor='image'>Image name with extension: i will remove this field soon, so it automatically records image name. should be easy. too tired tonight. IF YOU PUT WRONG FILENAME, THE PROGRAM WILL CRASH BC IT'LL LOOK FOR AN IMAGE THAT DOESN'T EXIST. Also, only upload images!</label>
-            <input className="input"
-              name='imageName'
-              placeholder='name of file please. include extension (e.g. filename.jpg). must be accuraete.'
-              value={values.imageName}
-              onChange={onChange}
-            />
-            <input type="file" id="fileInput"/>
+            <label htmlFor='image'>Upload an image: </label>
+            <br/>
+            <input type="file" id="fileInput" name='imageName'value={values.imageName}
+              onChange={onChange}/>
           </div>
           <div className="submit-div">
             <button className="upload-button">Submit</button>
