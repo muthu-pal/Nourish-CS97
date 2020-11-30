@@ -34,7 +34,7 @@ The web app nourish is a “community craigslist” for any extra food or resour
 things to work on:
 - routing when logging in, registering, and posting 
 - refresh comments on the spot 
-- add username to post (sabrina)
+- ~~add username to post (sabrina)~~
 - ~~adding a user to comments,~~
 - ~~upload image without having to type in image name~~
 - adding legit posts with real pics, comments
