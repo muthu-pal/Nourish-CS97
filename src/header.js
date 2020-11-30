@@ -7,7 +7,10 @@ function Header() {
   const menuBar = user ? (
     <div className="container">
         <a href="/">
-          <h1 className="title">nourish</h1>
+          <div className="titles">
+            <h1 className="title">nourish</h1>
+            <h1 className="subtitle">for Westwood</h1>
+          </div>
         </a>
         <div className="buttons">
         <a href="/search">
@@ -22,7 +25,10 @@ function Header() {
   ):(
     <div className="container">
         <a href="/">
-          <h1 className="title">nourish</h1>
+          <div className="titles">
+            <h1 className="title">nourish</h1>
+            <h1 className="subtitle">for Westwood</h1>
+          </div>
         </a>
         <div className="buttons">
         <a href="/search">

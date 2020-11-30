@@ -14,6 +14,13 @@
     
 }
 
+.titles{
+    padding-top:0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    grid-template-rows: 50% 50%;
+}
 .title{
     grid-column-start: 1;
     color: #6BB096;
@@ -21,6 +28,17 @@
     font-size: 3em;
     letter-spacing: 0.04em;
     text-decoration: none;
+    grid-row-end: 1;
+}
+.subtitle{
+    grid-column-start: 1;
+    color: #6BB096;
+    font-weight: 900px;
+    font-size: 1em;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    grid-row-start: 2;
+
 }
 
 .motto{
