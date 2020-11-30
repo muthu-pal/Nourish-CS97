@@ -54,6 +54,7 @@ function App() {
 const FETCH_POSTS_QUERY = gql`
 {
   getPosts{
+    username
     id 
     title
     caption
