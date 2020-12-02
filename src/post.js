@@ -123,9 +123,8 @@ function Post(props) {
           />
         </div>
         <div className="post-content">
-          <h1 className="username-post">{props.username}</h1>
           <h1 className="title-post">{props.title}</h1>
-          <p className="paragraphs">{props.paragraph}</p>
+          <p className="paragraphs"><b>@{props.username}</b> {props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
           {commentInput}
@@ -137,9 +136,8 @@ function Post(props) {
       <div className="container-post">
         <div className="post-image">NO IMAGE</div>
         <div className="post-content">
-          <h1 className="username-post">{props.username}</h1>
           <h1 className="title-post">{props.title}</h1>
-          <p className="paragraphs">{props.paragraph}</p>
+          <p className="paragraphs"><b>@{props.username}</b> {props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
           {commentInput}
