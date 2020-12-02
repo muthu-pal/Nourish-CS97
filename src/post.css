@@ -96,6 +96,20 @@ img{
     
 }
 
+.delete-div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.delete-button {
+    border-radius: 15px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color: darkred;
+    font-family: "Roboto";
+    padding: 5px;
+}
+
 .likeBox-notLoggedIn{
     display: flex;
     flex-direction: column;

@@ -129,6 +129,9 @@ function Post(props) {
           <h1 className="title-post">{props.title}</h1>
           <p className="paragraphs"><b>@{props.username}</b> {props.paragraph}</p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
+          {user && user.username === props.username && (
+            <div className="delete-div"> <button className="delete-button"> DELETE </button> </div>
+          )}
           {likeButton}
           {commentInput}
         </div>
@@ -171,6 +174,29 @@ const UPLOAD_COMMENT = gql`
     }
   }
 `;
+
+const DELETE_POST_MUTATION = gql`
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId)
+  }
+`;
+
+// const DELETE_COMMENT_MUTATION = gql`
+//   mutation deleteComment($postId: ID!, $commentId: ID!) {
+//     deleteComment(postId: $postId, commentId: $commentId) {
+//       id
+//       comments {
+//         id
+//         username
+//         createdAt
+//         body
+//       }
+//       commentCount
+//     }
+//   }
+// `;
+
 export default Post;
+
 
 //"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
