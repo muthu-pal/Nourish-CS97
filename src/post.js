@@ -3,6 +3,7 @@ import "./post.css";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "./context/auth";
+import { set } from "mongoose";
 
 function Post(props) {
   const { user } = useContext(AuthContext);
@@ -18,9 +19,11 @@ function Post(props) {
     } else setLiked(false);
   }, [user, props.likes]);
 
-  useEffect(() => {
-    console.log("use effect");
-  }, [user, addedComment]);
+  /*useEffect(() => {
+    if(addedComment!=""){
+      setCurrentComments(addedComment);
+    }
+  });*/
 
   const [likePost] = useMutation(LIKE_POST, {
     variables: { postId: props.id },
@@ -59,14 +62,14 @@ function Post(props) {
 
   //upload comment stuff
   const [uploadComment] = useMutation(UPLOAD_COMMENT, {
-    update() {
-      setAddedComment("");
-      window.location.reload();
-    },
     variables: {
       postId: props.id,
       body: addedComment,
-    },
+    },  update() {
+      props.comments.unshift({postId: props.id, body: addedComment, createdAt: "Just now", username: user.username});
+      setAddedComment("");
+     // setCurrentComments(props.comments); 
+    }
   });
 
   //props.comments.length > 0 ? post.comments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)
