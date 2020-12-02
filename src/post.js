@@ -1,17 +1,16 @@
-import React , { useContext, useEffect, useState } from 'react';
-import './post.css'
-import gql from 'graphql-tag';
-import {useMutation} from '@apollo/react-hooks';
-import { AuthContext } from './context/auth'; 
+import React, { useContext, useEffect, useState } from "react";
+import "./post.css";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
+import { AuthContext } from "./context/auth";
 
 function Post(props) {
-
   const { user } = useContext(AuthContext);
 
   const [liked, setLiked] = useState(false);
-  const [currentComments, setCurrentComments] = useState(props.comments); 
-  const [addedComment, setAddedComment ] = useState(""); 
-//end of upload comment stuff
+  const [currentComments, setCurrentComments] = useState(props.comments);
+  const [addedComment, setAddedComment] = useState("");
+  //end of upload comment stuff
 
   useEffect(() => {
     if (user && props.likes.find((like) => like.username === user.username)) {
@@ -23,78 +22,105 @@ function Post(props) {
     console.log("use effect");
   }, [user, addedComment]);
 
-  const [likePost] = useMutation(LIKE_POST,{
-    variables: { postId: props.id }
-  })
+  const [likePost] = useMutation(LIKE_POST, {
+    variables: { postId: props.id },
+  });
 
-  const likeButton = 
-  user ? (
+  const likeButton = user ? (
     liked ? (
       <div className="likeBox">
-        <button className="likeButton" onClick={likePost} style={{backgroundColor:"#F44336", color:"white"}}>Liked</button> 
+        <button
+          className="likeButton"
+          onClick={likePost}
+          style={{ backgroundColor: "#F44336", color: "white" }}
+        >
+          Liked
+        </button>
         <h5 className="likes">{props.likes.length} likes</h5>
       </div>
     ) : (
       <div className="likeBox">
-        <button className="likeButton" onClick={likePost} style={{backgroundColor:"white", color:"#F44336"}}>Like</button> 
+        <button
+          className="likeButton"
+          onClick={likePost}
+          style={{ backgroundColor: "white", color: "#F44336" }}
+        >
+          Like
+        </button>
         <h5 className="likes">{props.likes.length} likes</h5>
       </div>
     )
   ) : (
     <div className="likeBox-notLoggedIn">
-        <p className="paragraphLikeBox">Log in to like posts.</p> 
-        <h5 className="likes">{props.likes.length} likes</h5>
-      </div>
+      <p className="paragraphLikeBox">Log in to like posts.</p>
+      <h5 className="likes">{props.likes.length} likes</h5>
+    </div>
   );
-  
+
   //upload comment stuff
-  const [uploadComment] = useMutation(UPLOAD_COMMENT,{
-    
+  const [uploadComment] = useMutation(UPLOAD_COMMENT, {
     update() {
-      setAddedComment('');
+      setAddedComment("");
       window.location.reload();
     },
     variables: {
       postId: props.id,
-      body: addedComment
-    }
-    
-  })
+      body: addedComment,
+    },
+  });
 
-  
-  
-//props.comments.length > 0 ? post.comments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)
-  const commentInput = 
-  user ? (
-      <div>
-        <h5 className="comment-title">COMMENTS</h5>
-        <div className="comment-div">
-          <input className="comment-input"
-            name='commentText'
-            placeholder='enter comment here...'
-            id={props.id}
-            value={addedComment}
-            onChange={(event) => setAddedComment(event.target.value)}
-          />
-        </div>
-        <button className="commentButton" onClick={uploadComment}>Submit</button>
-        {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}><b>{comment.username}: </b>{comment.body}</ul>)) : ""}
+  //props.comments.length > 0 ? post.comments.map((comment)=>(<ul key={comment.id}>{comment.body}</ul>)
+  const commentInput = user ? (
+    <div>
+      <h5 className="comment-title">COMMENTS</h5>
+      <div className="comment-div">
+        <input
+          className="comment-input"
+          name="commentText"
+          placeholder="enter comment here..."
+          id={props.id}
+          value={addedComment}
+          onChange={(event) => setAddedComment(event.target.value)}
+        />
       </div>
+      <button className="commentButton" onClick={uploadComment}>
+        Submit
+      </button>
+      {currentComments.length > 0
+        ? currentComments.map((comment) => (
+            <ul key={comment.id}>
+              <b>{comment.username}: </b>
+              {comment.body}
+            </ul>
+          ))
+        : ""}
+    </div>
   ) : (
     <div>
       <h5 className="comment-title">COMMENTS</h5>
-      {currentComments.length > 0 ? currentComments.map((comment)=>(<ul key={comment.id}><b>{comment.username}: </b>{comment.body}</ul>)) : ""}
+      {currentComments.length > 0
+        ? currentComments.map((comment) => (
+            <ul key={comment.id}>
+              <b>{comment.username}: </b>
+              {comment.body}
+            </ul>
+          ))
+        : ""}
     </div>
   );
 
-
-  if(props.image!==''){
- 
+  if (props.image !== "") {
     return (
       <div className="container-post">
         <div className="post-image">
-          <img src={require('./images/'+props.image.substring(props.image.lastIndexOf("\\")+1)).default} alt=""/>
-
+          <img
+            src={
+              require("./images/" +
+                props.image.substring(props.image.lastIndexOf("\\") + 1))
+                .default
+            }
+            alt=""
+          />
         </div>
         <div className="post-content">
           <h1 className="username-post">{props.username}</h1>
@@ -105,15 +131,11 @@ function Post(props) {
           {commentInput}
         </div>
       </div>
-    )
-  }
-  else{
+    );
+  } else {
     return (
       <div className="container-post">
-        <div className="post-image">
-          NO IMAGE
-
-        </div>
+        <div className="post-image">NO IMAGE</div>
         <div className="post-content">
           <h1 className="username-post">{props.username}</h1>
           <h1 className="title-post">{props.title}</h1>
@@ -125,28 +147,29 @@ function Post(props) {
           <p className="comments">{props.comments}</p>
         </div>
       </div>
-    )
+    );
   }
-  }
-  
-  const LIKE_POST = gql`
-  mutation likePost($postId: ID!){
-    likePost(postId: $postId){
+}
+
+const LIKE_POST = gql`
+  mutation likePost($postId: ID!) {
+    likePost(postId: $postId) {
       id
-      likes{
-        id username
+      likes {
+        id
+        username
       }
     }
   }
-`
+`;
 
 const UPLOAD_COMMENT = gql`
-  mutation createComment($postId: ID!, $body: String!){
-    createComment(postId: $postId, body: $body){
+  mutation createComment($postId: ID!, $body: String!) {
+    createComment(postId: $postId, body: $body) {
       id
     }
   }
-`
-  export default Post
+`;
+export default Post;
 
-  //"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
+//"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
