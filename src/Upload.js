@@ -23,14 +23,18 @@ function Upload(props) {
       values.tags = [];
       values.tagsString = "";
       values.imageName = "";
-      props.history.push("/");
-    },
+      //props.history.push("/");
+      // window.location.reload();
+      window.alert("Your post has been uploaded. Head to the home page!");
+    }
   });
 
   function createPostCallback() {
     //console.log(values.tagsString)
     handleFileSubmit();
     createPost();
+    //props.history.push("/");
+    //window.location.reload();
   }
 
   ///upload stuff//
