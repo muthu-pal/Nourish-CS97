@@ -31,8 +31,9 @@ function Upload(props) {
   function createPostCallback() {
     handleFileSubmit();
     createPost();
+ 
     //props.history.push("/");
-    //window.location.reload();
+
   }
 
   ///upload stuff//
