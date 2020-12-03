@@ -18,9 +18,7 @@ function Post(props) {
     } else setLiked(false);
   }, [user, props.likes]);
 
-  useEffect(() => {
-    console.log("use effect");
-  }, [user, addedComment]);
+  useEffect(() => {}, [user, addedComment]);
 
   const [likePost] = useMutation(LIKE_POST, {
     variables: { postId: props.id },
@@ -124,7 +122,9 @@ function Post(props) {
         </div>
         <div className="post-content">
           <h1 className="title-post">{props.title}</h1>
-          <p className="paragraphs"><b>@{props.username}</b> {props.paragraph}</p>
+          <p className="paragraphs">
+            <b>@{props.username}</b> {props.paragraph}
+          </p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
           {commentInput}
@@ -137,7 +137,9 @@ function Post(props) {
         <div className="post-image">NO IMAGE</div>
         <div className="post-content">
           <h1 className="title-post">{props.title}</h1>
-          <p className="paragraphs"><b>@{props.username}</b> {props.paragraph}</p>
+          <p className="paragraphs">
+            <b>@{props.username}</b> {props.paragraph}
+          </p>
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {likeButton}
           {commentInput}

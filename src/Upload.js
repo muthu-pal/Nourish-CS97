@@ -24,11 +24,11 @@ function Upload(props) {
       values.tagsString = "";
       values.imageName = "";
       props.history.push("/");
+      window.location.reload();
     },
   });
 
   function createPostCallback() {
-    //console.log(values.tagsString)
     handleFileSubmit();
     createPost();
   }

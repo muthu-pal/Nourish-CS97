@@ -14,7 +14,6 @@ import Login from "./Login";
 
 function App() {
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
-  console.log(data);
 
   return (
     <div className="App">
