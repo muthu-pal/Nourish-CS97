@@ -23,7 +23,9 @@ function Upload(props) {
       values.tags = [];
       values.tagsString = "";
       values.imageName = "";
-      props.history.push("/");
+      // props.history.push("/");
+      // window.location.reload();
+      window.alert("You've uploaded a post! Head to the home page to see.")
       window.location.reload();
     },
   });
