@@ -19,6 +19,9 @@ function Post(props) {
     } else setLiked(false);
   }, [user, props.likes]);
 
+  useEffect(() => {
+    console.log("use effect for image")
+  }, [user, props.image]);
   /*useEffect(() => {
     if(addedComment!=""){
       setCurrentComments(addedComment);
