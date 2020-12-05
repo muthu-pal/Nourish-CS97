@@ -3,7 +3,7 @@ import "./post.css";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "./context/auth";
-import { set } from "mongoose";
+// import { set } from "mongoose";
 
 function Post(props) {
   const { user } = useContext(AuthContext);
@@ -27,6 +27,15 @@ function Post(props) {
 
   const [likePost] = useMutation(LIKE_POST, {
     variables: { postId: props.id },
+  });
+
+  const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+    update() {
+      window.location.reload();
+    },
+    variables: {
+      postId: props.id,
+    },
   });
 
   const likeButton = user ? (
@@ -139,7 +148,9 @@ function Post(props) {
           <h5 className="tags">Tags: {props.tags.toString()}</h5>
           {user && user.username === props.username && (
             <div className="delete-div">
-              <button className="delete-button"> DELETE </button>{" "}
+              <button onClick={deletePost} className="delete-button">
+                DELETE{" "}
+              </button>{" "}
             </div>
           )}
           {likeButton}
@@ -189,7 +200,9 @@ const UPLOAD_COMMENT = gql`
 
 const DELETE_POST_MUTATION = gql`
   mutation deletePost($postId: ID!) {
-    deletePost(postId: $postId)
+    deletePost(postId: $postId) {
+      id
+    }
   }
 `;
 
