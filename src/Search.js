@@ -53,6 +53,7 @@ function Search(props) {
                   comments={post.comments}
                   key={post.id}
                   id={post.id}
+                  username={post.username}
                   />
       )); 
   }
